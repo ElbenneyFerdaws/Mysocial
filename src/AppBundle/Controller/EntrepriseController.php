@@ -76,11 +76,11 @@ class EntrepriseController extends Controller
         $em = $this->getDoctrine()->getManager();
         $entreprise = $em->getRepository('AppBundle:Entreprise')
             ->findAll();
-        dump($entreprise);die;
+//dump($entreprise);die;
 
-//        return $this->render('list.html.twig', array(
-//           'entreprise' => $entreprise
-//        ));
+        return $this->render('@App/Entreprise/list.html.twig', array(
+           'entreprise' => $entreprise
+        ));
     }
 
     /**

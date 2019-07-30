@@ -3,5 +3,19 @@
 {% block title %}AppBundle:Entreprise:show{% endblock %}
 
 {% block body %}
-<h1>Welcome to the Entreprise:show page</h1>
+    <h1>liste des entreprises</h1>
+    <div class="card" >
+        {% for entreprise in entreprise %}
+-----
+        <div class="card-body" >
+
+            <p class="card-text">Entreprise: {{ entreprise.nom }}</p>
+            <p class="card-text">id: {{ entreprise.id }}</p>
+            <p class="card-text">E-mail: {{ entreprise.mail }}</p>
+            <p class="card-text">Etat: {{ entreprise.etat }}</p>
+            {% else %}
+            <h5 class="card-title">entreprise non trouvé </h5>
+        {% endfor %}
+        </div>
+    </div></div>
 {% endblock %}
