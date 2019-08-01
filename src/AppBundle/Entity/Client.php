@@ -207,4 +207,5 @@ private $entreprise;
     {
         return $this->etat;
     }
+    
 }

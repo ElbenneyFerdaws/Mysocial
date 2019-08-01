@@ -121,4 +121,10 @@ class Entreprise
     {
         return $this->etat;
     }
+
+    public function __toString()
+    {
+        return $this->getNom();
+    }
+
 }

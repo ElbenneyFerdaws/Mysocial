@@ -27,11 +27,10 @@ class ClientController extends Controller
        $form=$this->createForm(ClientType::class,$client);
        $form->handleRequest($request);
 
-       if($form->isSubmitted()&& $form->isValid()){
+       if($form->isSubmitted()){
         $em = $this->getDoctrine()->getManager();
         $em->persist($client);
         $em->flush();
-//        return new Response('client ajoutée');
        }
         return $this->render('AppBundle:Client:add.html.twig', array('form' => $form->createview()));
     }
