@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -24,27 +25,29 @@ class Client
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Veuillez remplir ce champ ")
      * @ORM\Column(name="nom", type="string", length=50)
      */
     private $nom;
 
     /**
      * @var string
-     *
+     *@Assert\NotBlank(message="Veuillez remplir ce champ ")
      * @ORM\Column(name="prenom", type="string", length=50)
      */
     private $prenom;
 
     /**
      * @var string
-     *
+     *@Assert\NotBlank(message="Veuillez remplir ce champ ")
+     * @Assert\Email()
      * @ORM\Column(name="mail", type="string", length=100)
      */
     private $mail;
 
     /**
      * @var string
+     *@Assert\NotBlank(message="Veuillez remplir ce champ ")
      *
      * @ORM\Column(name="mdp", type="string", length=50)
      */
@@ -57,6 +60,7 @@ class Client
      */
     private $etat;
     /**
+     * @Assert\NotBlank(message="Veuillez remplir ce champ ")
      * @var ORM\ManyToOne(targetEntity="AppBundle\Entity\Entreprise")
      * @ORM\Column(name="entreprise")
      */
@@ -207,5 +211,5 @@ private $entreprise;
     {
         return $this->etat;
     }
-    
+
 }

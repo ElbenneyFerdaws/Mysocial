@@ -27,13 +27,14 @@ class ClientController extends Controller
        $form=$this->createForm(ClientType::class,$client);
        $form->handleRequest($request);
 
-       if($form->isSubmitted()){
+       if($form->isSubmitted()&&$form->isValid()){
         $em = $this->getDoctrine()->getManager();
         $em->persist($client);
         $em->flush();
+           return $this->render('AppBundle:Client:list.html.twig', array('form' => $form->createview()));
+       }else{ return $this->render('AppBundle:Client:add.html.twig', array('form' => $form->createview()));
        }
-        return $this->render('AppBundle:Client:add.html.twig', array('form' => $form->createview()));
-    }
+         }
 
     /**
      * @Route("/update/{clientId}")
