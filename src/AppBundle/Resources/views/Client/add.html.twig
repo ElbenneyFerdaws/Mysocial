@@ -3,5 +3,8 @@
 {% block title %}AppBundle:Client:add{% endblock %}
 
 {% block body %}
-<h1>Welcome to the Client:add page</h1>
+    {{ form_start(form) }}
+{{ form_widget(form) }}
+
+{{ form_end(form) }}
 {% endblock %}

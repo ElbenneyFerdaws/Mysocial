@@ -1,7 +1,22 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}AppBundle:Client:list{% endblock %}
+{% block title %}Client:list{% endblock %}
 
 {% block body %}
-<h1>Welcome to the Client:list page</h1>
+    <h1>liste des clients</h1>
+    <div class="card" >
+        {% for client in client %}
+        -----
+        <div class="card-body" >
+
+            <p class="card-text">Client: {{ client.nom }}</p>
+            <p class="card-text">id: {{ client.id }}</p>
+            <p class="card-text">E-mail: {{ client.mail }}</p>
+            <p class="card-text">Entreprise : {{ client.entreprise }}</p>
+            <p class="card-text">Etat: {{ client.etat }}</p>
+            {% else %}
+                <h5 class="card-title">client non trouvé </h5>
+            {% endfor %}
+        </div>
+    </div></div>
 {% endblock %}

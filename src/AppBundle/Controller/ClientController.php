@@ -3,33 +3,37 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Client;
+use AppBundle\Form\ClientType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+
 /**
  * Class ClientController
  * @package AppBundle\Controller
- * @Route(path="/client", methods={"GET"})
+ * @Route(path="/client")
  */
 class ClientController extends Controller
 {
     /**
      * @Route("/add")
      */
-    public function addAction()
+    public function addAction(Request $request)
     {
 
-        $client = new Client();
-        $client->setNom('ELbenney');
-        $client->setPrenom('Ferdaws');
-        $client->setMail('ferdaws.elbenney@gmail.com');
-        $client->setMdp('azerty');
-        $client->setEtat('true');
+       $client = new Client();
+       $form=$this->createForm(ClientType::class,$client);
+       $form->handleRequest($request);
+
+       if($form->isSubmitted()&& $form->isValid()){
         $em = $this->getDoctrine()->getManager();
         $em->persist($client);
         $em->flush();
-        return $this->render('AppBundle:Client:add.html.twig', array('client' => $client
-        ));
+//        return new Response('client ajoutée');
+       }
+        return $this->render('AppBundle:Client:add.html.twig', array('form' => $form->createview()));
     }
 
     /**
@@ -64,10 +68,10 @@ class ClientController extends Controller
         $em = $this->getDoctrine()->getManager();
         $client = $em->getRepository('AppBundle:Client')
             ->findAll();
-        dump($client);die;
-//        return $this->render('AppBundle:Client:list.html.twig', array('client' => $client
-//
-//        ));
+//        dump($client);die;
+        return $this->render('AppBundle:Client:list.html.twig', array('client' => $client
+
+        ));
     }
 
     /**

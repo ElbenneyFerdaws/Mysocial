@@ -58,9 +58,8 @@ class Client
     private $etat;
     /**
      * @var ORM\ManyToOne(targetEntity="AppBundle\Entity\Entreprise")
-     * @ORM\Column(name="entreprise")
      */
-private $entreprise;
+public $entreprise;
 
     /**
      * @return ORM\ManyToOne
